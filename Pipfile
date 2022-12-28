@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pandas = "*"
+numpy = "*"
+requests = "*"
+joblib = "*"
+scikit-learn = "*"
+python-dotenv = "*"
+xgboost = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
