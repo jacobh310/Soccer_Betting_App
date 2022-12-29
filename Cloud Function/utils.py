@@ -139,7 +139,7 @@ def get_team_stats(API_TOKEN, season_id, standings):
 
 # gets fixtures and combines the stand stats and ingame stats
 
-def get_fixture_stats(league_id, date1, date2, all_stats):
+def get_fixture_stats(league_id, date1, date2, all_stats,headers):
     url = f"https://football-pro.p.rapidapi.com/api/v2.0/fixtures/between/{date1}/{date2}"
 
     querystring = {"bookmakers": "2", "leagues": str(league_id), "tz": "Europe/Amsterdam",
@@ -198,7 +198,7 @@ def get_fixture_stats(league_id, date1, date2, all_stats):
     return diff_fix_stats
 
 
-# Gets prediction probability from fixure stats
+# Gets prediction probability from fixture stats
 
 def model_inference(model, diff_fix_stats):
     cols = ['HM1', 'HM2', 'HM3', 'AM1', 'AM2', 'AM3']
