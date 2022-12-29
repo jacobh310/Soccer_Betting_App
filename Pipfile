@@ -11,6 +11,10 @@ joblib = "*"
 scikit-learn = "*"
 python-dotenv = "*"
 xgboost = "*"
+google-cloud = "*"
+google-cloud-storage = "*"
+update = "*"
+google-cloud-bigquery = "*"
 
 [dev-packages]
 
