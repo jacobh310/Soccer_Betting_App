@@ -3,6 +3,7 @@ import requests
 import json
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder
+from datetime import datetime
 
 
 def get_points(result):
@@ -59,7 +60,8 @@ def get_season_stats(team_id, token, season_id):
 # Makes stats dictionary into a Data Frame
 
 def make_stats_df(season_stats):
-    """Gets relevant stats from stats dictionary and converts it to a dataframe where each column is a different stat """
+    """Gets relevant stats from stats dictionary and converts it to a
+    dataframe where each column is a different stat"""
 
     keys = ['avg_goals_per_game_scored', 'avg_goals_per_game_conceded', 'avg_shots_off_target_per_game',
             'avg_shots_on_target_per_game', 'avg_corners', 'avg_fouls_per_game']
@@ -161,8 +163,12 @@ def get_fixture_stats(league_id, date1, date2, all_stats,headers):
         home_stats = all_stats[all_stats['team_id'] == home_id].reset_index().drop(columns='index')
         home_stats['Bet365 Home Odds'] = home_odds
         home_stats['Bet 365 Home Win Prob'] = home_prob
+        home_stats['Home_Logo_URL'] = dic['data'][game]['localTeam']['data']['logo_path']
+        home_stats['Date_Time'] = dic['data'][game]['time']['starting_at']['date_time']
+        home_stats['Request_Date_Time'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         away_stats = all_stats[all_stats['team_id'] == away_id].reset_index().drop(columns='index')
+        away_stats['Away_Logo_URL'] = dic['data'][game]['localTeam']['data']['logo_path']
 
         fix = pd.merge(home_stats, away_stats, left_index=True, right_index=True, suffixes=('H', 'A'))
 
@@ -178,7 +184,8 @@ def get_fixture_stats(league_id, date1, date2, all_stats,headers):
 
     cols = ['Hteam_id', 'team_nameH', 'Ateam_id', 'team_nameA', 'games_playedH', 'games_playedA', 'Bet365 Home Odds',
             'Bet 365 Home Win Prob', 'MW', 'HP', 'HFormPts', 'HM1', 'HM2', 'HM3', 'HGS', 'HGC', 'HF', 'HTS', 'HC', 'HS',
-            'AP', 'AFormPts', 'AM1', 'AM2', 'AM3', 'AGS', 'AGC', 'AF', 'ATS', 'AC', 'AS']
+            'AP', 'AFormPts', 'AM1', 'AM2', 'AM3', 'AGS', 'AGC', 'AF', 'ATS', 'AC', 'AS','Home_Logo_URL','Away_Logo_URL', 'Date_Time',
+            'Request_Date_Time']
     fixtures_stats = fixtures_stats[cols]
     fixtures_stats = fixtures_stats.reset_index().drop(columns='index')
     fixtures_stats = fixtures_stats.rename(columns={'team_nameH': 'Home Team', 'team_nameA': 'Away Team'})
