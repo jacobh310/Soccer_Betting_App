@@ -15,6 +15,7 @@ google-cloud = "*"
 google-cloud-storage = "*"
 update = "*"
 google-cloud-bigquery = "*"
+functions-framework = "*"
 
 [dev-packages]
 
