@@ -16,6 +16,9 @@ google-cloud-storage = "*"
 update = "*"
 google-cloud-bigquery = "*"
 functions-framework = "*"
+db-dtypes = "*"
+flask = "*"
+gunicorn = "*"
 
 [dev-packages]
 
