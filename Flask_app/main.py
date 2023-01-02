@@ -26,7 +26,7 @@ def get_fixtures():
 app = Flask(__name__)
 
 
-@app.route("/stats_predictions", methods=['GET'])
+@app.route("/", methods=['GET'])
 def predictions():
     response = get_fixtures()
     return response, 201
