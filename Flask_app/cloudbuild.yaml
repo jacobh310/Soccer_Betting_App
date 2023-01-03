@@ -1,7 +1,7 @@
 steps:
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/astute-winter-373022/predictions', '.']
+  args: ['build', '-t', 'gcr.io/astute-winter-373022/predictions', './Flask_app']
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/astute-winter-373022/predictions']
