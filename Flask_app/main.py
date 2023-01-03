@@ -20,8 +20,25 @@ def get_fixtures():
       `astute-winter-373022.Soccer_Stats.Stats_Predictions` 
     WHERE Date_Time BETWEEN CURRENT_DATE() AND DATE_ADD(CURRENT_DATE(), INTERVAL 3 DAY);
     """
+
+    query = """    SELECT 
+      Home_Team,
+      Away_Team,
+      Date_Time, 
+      Bet_365_Home_Win_Prob, 
+      Model_Home_Win_Prob, 
+      Bet365_Home_Odds, 
+      Implied_Model_Odds
+    FROM
+      `astute-winter-373022.Soccer_Stats.Stats_Predictions` 
+    WHERE Date_Time BETWEEN '2023-01-05' AND '2023-01-08'"""
+
     df = client.query(query).to_dataframe()
-    return df.to_json(orient='records')
+    json = df.to_json(orient='records')
+    if json:
+        return "No Games"
+    else:
+        return json
 
 
 app = Flask(__name__)
