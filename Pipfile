@@ -19,6 +19,7 @@ functions-framework = "*"
 db-dtypes = "*"
 flask = "*"
 gunicorn = "*"
+streamlit = "*"
 
 [dev-packages]
 
