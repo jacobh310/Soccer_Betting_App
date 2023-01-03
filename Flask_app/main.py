@@ -23,7 +23,7 @@ def get_fixtures():
 
     df = client.query(query).to_dataframe()
     json = df.to_json(orient='records')
-    if json:
+    if json == []:
         return "No Games"
     else:
         return json
