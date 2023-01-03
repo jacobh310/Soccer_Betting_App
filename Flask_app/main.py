@@ -8,9 +8,11 @@ def get_fixtures():
     client = bigquery.Client()
 
     query = """
-    SELECT 
+   SELECT 
       Home_Team,
       Away_Team,
+      Home_Logo_URL,
+      Away_Logo_URL,
       Date_Time, 
       Bet_365_Home_Win_Prob, 
       Model_Home_Win_Prob, 
@@ -18,7 +20,7 @@ def get_fixtures():
       Implied_Model_Odds
     FROM
       `astute-winter-373022.Soccer_Stats.Stats_Predictions` 
-    WHERE Date_Time BETWEEN CURRENT_DATE() AND DATE_ADD(CURRENT_DATE(), INTERVAL 3 DAY);
+    WHERE Date_Time BETWEEN CURRENT_DATE() AND DATE_ADD(CURRENT_DATE(), INTERVAL 3 DAY)
     """
 
     df = client.query(query).to_dataframe()
