@@ -168,7 +168,7 @@ def get_fixture_stats(league_id, date1, date2, all_stats,headers):
         home_stats['Request_Date_Time'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         away_stats = all_stats[all_stats['team_id'] == away_id].reset_index().drop(columns='index')
-        away_stats['Away_Logo_URL'] = dic['data'][game]['localTeam']['data']['logo_path']
+        away_stats['Away_Logo_URL'] = dic['data'][game]['visitorTeam']['data']['logo_path']
 
         fix = pd.merge(home_stats, away_stats, left_index=True, right_index=True, suffixes=('H', 'A'))
 

@@ -20,6 +20,8 @@ db-dtypes = "*"
 flask = "*"
 gunicorn = "*"
 streamlit = "*"
+ipython = "*"
+plotly = "*"
 
 [dev-packages]
 

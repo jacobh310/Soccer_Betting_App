@@ -20,7 +20,8 @@ def get_fixtures():
       Implied_Model_Odds
     FROM
       `astute-winter-373022.Soccer_Stats.Stats_Predictions` 
-    WHERE Date_Time BETWEEN CURRENT_DATE() AND DATE_ADD(CURRENT_DATE(), INTERVAL 3 DAY)
+    WHERE Date_Time BETWEEN CURRENT_DATE("America/Los_Angeles") AND DATE_ADD(CURRENT_DATE("America/Los_Angeles"), 
+    INTERVAL 3 DAY)
     """
 
     df = client.query(query).to_dataframe()
