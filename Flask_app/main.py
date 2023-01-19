@@ -21,7 +21,7 @@ def get_fixtures():
     FROM
       `astute-winter-373022.Soccer_Stats.Stats_Predictions` 
     WHERE Date_Time BETWEEN CURRENT_DATE("America/Los_Angeles") AND DATE_ADD(CURRENT_DATE("America/Los_Angeles"), 
-    INTERVAL 3 DAY)
+    INTERVAL 4 DAY)
     """
 
     df = client.query(query).to_dataframe()
