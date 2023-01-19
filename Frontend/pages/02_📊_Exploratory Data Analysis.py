@@ -43,8 +43,7 @@ plot4.update_traces(marker_line_width=1, marker_size=3)
 
 st.set_page_config(page_title="EDA", layout='wide')
 st.title("Exploratory Data Analysis")
-st.markdown('''##### <span style="color:gray">This EDA uses British Premier League Data from 2000-2022. Enjoy the interactive plots made with Plotly </span>
-            ''', unsafe_allow_html=True)
+st.markdown('''##### <span style="color:gray">This EDA uses British Premier League Data from 2000-2022. Enjoy the interactive plots made with Plotly </span>''', unsafe_allow_html=True)
 t1, t2, t3 = st.tabs(["Scatter Plots", "Bar Charts", "Build Your Own"])
 
 with t1:
