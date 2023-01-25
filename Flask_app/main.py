@@ -1,6 +1,6 @@
 from google.cloud import bigquery
-from flask import Flask, request, jsonify
-import pandas
+from flask import Flask
+import json
 import os
 
 
@@ -25,11 +25,11 @@ def get_fixtures():
     """
 
     df = client.query(query).to_dataframe()
-    json = df.to_json(orient='records')
-    if json == []:
+    j = df.to_json(orient='records')
+    if not json.loads(j):
         return "No Games"
     else:
-        return json
+        return j
 
 
 app = Flask(__name__)

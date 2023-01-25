@@ -5,12 +5,16 @@ import streamlit as st
 from IPython.display import Image, HTML
 from datetime import datetime
 
+
 # Retrieve Data from Rest API
 def get_games():
     API_URL = st.secrets['API_URL']
     resp = requests.get(API_URL).json()
-    df = pd.DataFrame(resp)
-    return df
+    if resp == 'No Games':
+        return resp
+    else:
+        dataframe = pd.DataFrame(resp)
+        return dataframe
 
 
 def to_dt(string):
@@ -33,18 +37,23 @@ def path_to_image_html(path):
 
 # Reformat DataFrame for Display
 df = get_games()
-df['Date_Time'] = df['Date_Time'].apply(to_dt)
-df = df[['Home_Team', 'Home_Logo_URL', 'Away_Team', 'Away_Logo_URL', 'Date_Time', 'Bet_365_Home_Win_Prob',
-         'Model_Home_Win_Prob', 'Bet365_Home_Odds', 'Implied_Model_Odds']]
-new_cols = ['Home', 'H', 'Away', 'A', 'Game Time', 'Bet 365 Home Win Prob',
-            'Model Home Win Prob', 'Bet365 Home Odds', 'Implied Model Odds']
-mapper = dict(zip(df.columns, new_cols))
-df = df.rename(columns=mapper).round(3)
-df = HTML(df.to_html(escape=False, formatters=dict(H=path_to_image_html, A=path_to_image_html)))
+
+if df == 'No Games':
+    st.write('No Games in the next 3 days')
+    
+else:
+    df['Date_Time'] = df['Date_Time'].apply(to_dt)
+    df = df[['Home_Team', 'Home_Logo_URL', 'Away_Team', 'Away_Logo_URL', 'Date_Time', 'Bet_365_Home_Win_Prob',
+             'Model_Home_Win_Prob', 'Bet365_Home_Odds', 'Implied_Model_Odds']]
+    new_cols = ['Home', 'H', 'Away', 'A', 'Game Time', 'Bet 365 Home Win Prob',
+                'Model Home Win Prob', 'Bet365 Home Odds', 'Implied Model Odds']
+    mapper = dict(zip(df.columns, new_cols))
+    df = df.rename(columns=mapper).round(3)
+    df = HTML(df.to_html(escape=False, formatters=dict(H=path_to_image_html, A=path_to_image_html)))
 
 # Formatting and Styling Page
 
-st.set_page_config(page_title="Game Predictions",  layout='wide')
+st.set_page_config(page_title="Game Predictions", layout='wide')
 
 st.title("Upcoming Game Predictions")
 
