@@ -64,8 +64,8 @@ def send_data(request):
         try:
             diff_fix_stats = utils.get_fixture_stats(bpl_league_id, date_1, date_2, all_stats, headers)
         except:
-            print('No Games Today')
-            sys.exit()
+            print('No Games Found')
+            return 'No Games Found'
         probs = utils.model_inference(model, diff_fix_stats)
 
         final = diff_fix_stats.copy()
