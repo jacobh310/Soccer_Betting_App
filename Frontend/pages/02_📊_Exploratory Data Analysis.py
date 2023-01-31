@@ -15,7 +15,7 @@ data.fetch_and_clean_data()
 stats_df = data.stats
 game_team_stats_season = data.prep_data()
 
-# Load Plots
+# Load and Format Plots
 plot1 = make_scatter(game_team_stats_season, x='Target Shots', y='Goals', animation_frame='Season', hover_name='Team',
                      color='WDL', animation_group='Team', size='Shots')
 
@@ -39,7 +39,6 @@ plot4 = px.scatter_3d(stats_df, x=x, y=y, z=z, animation_frame='Season', hover_n
 plot4.update_traces(marker_line_width=1, marker_size=3)
 
 # Format And Style Page
-
 
 st.set_page_config(page_title="EDA", layout='wide')
 st.title("Exploratory Data Analysis")
