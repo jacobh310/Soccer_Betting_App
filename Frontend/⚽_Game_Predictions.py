@@ -49,7 +49,8 @@ df = get_games()
 # checks if there is a games in the next 3 days. If there is games then it will reformat dataframe
 # to be more visually appealing
 
-if df != 'No Games':
+
+if df is not 'No Games':
     df['Date_Time'] = df['Date_Time'].apply(to_dt)
     df = df[['Home_Team', 'Home_Logo_URL', 'Away_Team', 'Away_Logo_URL', 'Date_Time', 'Bet_365_Home_Win_Prob',
              'Model_Home_Win_Prob', 'Bet365_Home_Odds', 'Implied_Model_Odds']]
@@ -69,7 +70,7 @@ st.markdown("""Take bets when Model Home Win Prob is greater than the Bet 365 Ho
                 Model odds are less than the Bet365 Home Odds""")
 
 # checking if there is games in the next 3 days. If there is a dataframe will appear
-if df != 'No Games':
+if df is not 'No Games':
     st.write(df, unsafe_allow_html=True)
 else:
     st.subheader("There is no games in the next 3 days")
