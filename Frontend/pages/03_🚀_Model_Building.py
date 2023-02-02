@@ -17,8 +17,8 @@ st.markdown("""<p> The model was trained on past team in-game statistics to pred
 
 col1, col2 = st.columns(2)
 
-hw_img = Image.open("pages/Images/hw_pl.png")
-ev_img = Image.open("pages/Images/ev_pl.png")
+hw_img = Image.open("Images/hw_pl.png")
+ev_img = Image.open("Images/ev_pl.png")
 
 col1.subheader('1st Strategy: Home over 50%')
 col1.markdown("""<p style="color:silver"> In this strategy a $100 bet is taken when the model gives the home
