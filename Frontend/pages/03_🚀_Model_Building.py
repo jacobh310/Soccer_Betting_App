@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
-
+import requests
+from io import BytesIO
 
 
 st.set_page_config(page_title="Game Predictions",  layout='wide')
@@ -17,8 +18,13 @@ st.markdown("""<p> The model was trained on past team in-game statistics to pred
 
 col1, col2 = st.columns(2)
 
-hw_img = Image.open("Images/hw_pl.png")
-ev_img = Image.open("Images/ev_pl.png")
+hw_url = "https://raw.githubusercontent.com/jacobh310/Soccer_Betting_App/main/Frontend/pages/Images/hw_pl.png"
+ev_url = "https://raw.githubusercontent.com/jacobh310/Soccer_Betting_App/main/Frontend/pages/Images/ev_pl.png"
+hw_resp = requests.get(hw_url)
+ev_resp = requests.get(ev_url)
+
+hw_img = Image.open(BytesIO(hw_resp.content))
+ev_img = Image.open(BytesIO(ev_resp.content))
 
 col1.subheader('1st Strategy: Home over 50%')
 col1.markdown("""<p style="color:silver"> In this strategy a $100 bet is taken when the model gives the home
