@@ -23,5 +23,8 @@ Several machine learning algorithims were trained on data from 2000-2021. Data w
 
 ## App Architecture
 
+<p ><img align="center" src="https://raw.githubusercontent.com/jacobh310/Soccer_Betting_App/main/Images/App%20Architecture.png" 
+      title="App Architecture" width="700"/></p>
+
 
 
