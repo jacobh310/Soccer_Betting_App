@@ -26,5 +26,43 @@ Several machine learning algorithims were trained on data from 2000-2021. Data w
 <p ><img align="center" src="https://raw.githubusercontent.com/jacobh310/Soccer_Betting_App/main/Images/App%20Architecture.png" 
       title="App Architecture" width="700"/></p>
 
+**Cloud Storage**: Stores the best-performing machine learning Model
 
+**Cloud Function:**
+- Request fixture, team, and odds data for the next 4 days from Sportmonk and Rapid API.
+- Cleans data and then loads model from **Cloud Storage** to make predictions on fixtures
+- Fixture, team, and odds data along with prediction are stored in **BigQuery** table
+- **Deployment Details**
+    - Included API tokens in runtime variables
+    - Used soccer-betting-storage service account which has access to **big query** and **cloud storage**
+    - Have to allow all traffic so cloud scheduler can access the endpoint
 
+**Cloud Scheduler:** Runs the cloud function every 4 days 
+- **Deployment Details**
+    - Get Request
+    - Auth Header OIDC token
+    - Service account: has to have access to a cloud function
+
+**BigQuery:** Has fixture, team, and odds data along with predictions
+
+**Cloud Run:** Rest API that takes GET requests and returns fixtures, teams, odds, and predictions for the games in the next three days. **Google Cloud Build** will redeploy containers using the **Container Registry** every time code is pushed into a GitHub Repository
+- **Deployment Details**
+    - Make Dockerfile
+    - **Builds Container Image:** gcloud builds submit --tag gcr.io/<project_id>/<function_name>
+    - **Deploys to Google Cloud Run:** gcloud run deploy --image gcr.io/<project_id>/<function_name> --platform managed
+- **Cloud Build Details**
+    - Need to make YAML file
+        - Specified “./Flask_app” because that is the directory where the python script deployed to the cloud run is located 
+    - No service account needed
+- **Container Registry**
+    - Each new deployment is going upload a container image located in project folder/clour run name
+
+**Streamlit Deploy:** The app is deployed using streamlit deploy which integrates with GitHub
+
+## Resources
+#### Deployment
+https://github.com/lukebarousse/Data_Analyst_Streamlit_App_V1
+https://github.com/patrickloeber/ml-deployment
+#### APIs
+https://football-postman.sportmonks.com/#23c7dbe0-863f-47a3-a079-c59d5cf775c4
+https://rapidapi.com/sportmonks-data/api/football-pro
