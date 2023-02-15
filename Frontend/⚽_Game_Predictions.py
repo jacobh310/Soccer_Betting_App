@@ -82,7 +82,7 @@ different models were Hyperparameter tuned and the best one was deployed. Predic
 three days are posted on this page
 """)
 
-st.sidebar.info("Read more about how the model works on[Github](https://github.com/jacobh310/soccer_betting).",
+st.sidebar.info("Read more about how the model works on [Github](https://github.com/jacobh310/soccer_betting).",
                 icon="ℹ️")
 
 st.success('''**A Brief Note on Deployment:**  
