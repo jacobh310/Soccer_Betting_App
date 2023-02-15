@@ -14,7 +14,6 @@ st.markdown("""<p>  The model was trained on past team in-game statistics to pre
              The models were evaluated first with accuracy, precision, and recall but the true evaluation was the net 
              profit/loss of each algorithm. The baseline was the profit/loss you were to bet $100 on every game so
              betting odds were also collected. Two different betting strategies were deployed. 
-
              </p>""",  unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
