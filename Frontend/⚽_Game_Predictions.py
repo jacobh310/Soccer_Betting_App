@@ -77,16 +77,19 @@ else:
 
 st.sidebar.markdown(" ## BPL Predictor")
 st.sidebar.markdown("""This Model was trained from British Premier League Data from 2000-2022. The data was collected 
-from [Football-Data](https://www.football-data.co.uk/englandm.php). Data was split into Train Dev Test sets. Several 
+from [Football-Data](https://www.football-data.co.uk/englandm.php). The data was split into Train Dev Test sets. Several 
 different models were Hyperparameter tuned and the best one was deployed. Predictions for games scheduled in the next 
-three days are posted on this page""")
+three days are posted on this page
+""")
 
-st.sidebar.info("Read more about how the model works and [Github](https://github.com/jacobh310/soccer_betting).",
+st.sidebar.info("Read more about how the model works on[Github](https://github.com/jacobh310/soccer_betting).",
                 icon="ℹ️")
 
 st.success('''**A Brief Note on Deployment:**  
 XGBoost Classifier Model was deployed to make predictions. The model is hosted on google cloud storage. Every three days
- a Google Cloud Function is scheduled that will make inference using the model on Cloud Storage and data collected from 
+ a Google Cloud Function is scheduled that will make inferences using the model on Cloud Storage and data collected from 
  the SportsMonk API. The Data and Predictions are then stored in a BigQuery DataBase where a REST API hosted on Cloud Run
- can make queries according to the request made from the front end (This Page). I know this solution is over engineering.
- I wanted to display my skills and familiarity with these GCP technologies and my ability to deploy models''')
+ can make queries according to the request made from the front end (This Page). I know this solution is over-engineering.
+ I wanted to display my skills and familiarity with these GCP technologies and my ability to deploy models. "Read more 
+ app architecture works on
+[Github](https://github.com/jacobh310/Soccer_Betting_App).''')

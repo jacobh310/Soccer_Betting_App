@@ -50,13 +50,14 @@ with t1:
     col1.markdown("<h3 style='text-align: Left;'>Target Shots vs Goals</h3>",
                   unsafe_allow_html=True)
     col1.markdown("""<p style='color:gray';>The scatter plot below takes the average target shots and plots them versus the 
-            average goals. The size ofthe markers were scaled to resemble the average number of shots. It is clear from 
+            average goals. The size of the markers was scaled to resemble the average number of shots. It is clear from 
             looking at this plot that the number of target shots is positively correlated with the number of goals.
             The teams that win also score a lot of goals.</p>""",
                   unsafe_allow_html=True)
 
-    col1.markdown("""<p style='color:gray';>It is important to note that this looks at the averages target shots and goals after the outcome. From this
-        plot you cannot conclude that teams that average a lot of target shots will have a higher chance of winning</p>""",
+    col1.markdown("""<p style='color:gray';>It is important to note that this looks at the average target shots and goals
+     after the outcome. From this plot you cannot conclude that teams that average a lot of target shots will have a 
+     higher chance of winning</p>""",
                   unsafe_allow_html=True)
 
     col1.plotly_chart(plot1)
@@ -64,10 +65,11 @@ with t1:
     col2.markdown("<h3 >Home Team Goal Difference (HTGD) vs Away Team Goal Difference (ATGD)</h3>",
                   unsafe_allow_html=True)
 
-    col2.markdown("""<p style='color:gray';>Team Goal Difference is defined by the average difference of goals between that team and 
-            their opponent. Looking at the scatter plots from each season a patter starts to arise. The home team would
-            win when they had a highest goal difference from the away team. Notice how the majority of the Home win markers
-            conglomerate at the lower right side of the plot. That is where the HTGD is the highest and teh ATGD is the 
+    col2.markdown("""<p style='color:gray';>
+Team Goal Difference is defined by the average difference of goals between that team and 
+            its opponent. Looking at the scatter plots from each season a pattern starts to arise. The home team would
+            win when they had the highest goal difference from the away team. Notice how the majority of the Home win markers
+            conglomerate at the lower right side of the plot. That is where the HTGD is the highest and the ATGD is the 
             lowest</p>""",
                   unsafe_allow_html=True)
     col2.plotly_chart(plot2)
@@ -76,18 +78,21 @@ with t1:
 
     col3.markdown("<h3 >Home Team Points (HTP) vs Away Team Points (ATP)</h3>",
                   unsafe_allow_html=True)
-    col3.markdown("""<p style='color:gray';>From this scatter plot we see that there are more of the Home Win markers 
+    col3.markdown("""<p style='color:gray';>From this scatter plot, we see that there are more of the Home Win markers 
     on the right and lower side indicating that the home team generally won when they had a greater points difference 
-    than the away team of the plot</p>""", unsafe_allow_html=True)
+    than the away team of the plot
+</p>""", unsafe_allow_html=True)
     col3.plotly_chart(plot3)
 
     col4.markdown("<h3 >Home Team Goal Difference (HTGD) vs Away Team Goal Difference (ATGD) vs Form Points Difference "
                   "(FPD)</h3>",
                   unsafe_allow_html=True)
-    col4.markdown("""<p style='color:gray';>This 3D scatter plots has HTGD and ATGD like the plot above but it also
-    plots FPD (Form Points Difference on the Z-axis. FPD is the difference in points from the home team and away team in
-    the last 3 games. You would expect expect fixtures with a higher FPD, HTGD, and lower ATGD to have a higher home
-     team win rate. At looking at the plot this is generally true</p>""", unsafe_allow_html=True)
+    col4.markdown("""<p style='color:gray';>
+This 3D scatter plots has HTGD and ATGD like the plot above but it also
+    plots FPD (Form Points Difference on the Z-axis. FPD is the difference in points from the home team and the away team in
+    the last 3 games. You would expect fixtures with a higher FPD, HTGD, and lower ATGD to have a higher home
+     team win rate. At looking at the plot this is generally true
+</p>""", unsafe_allow_html=True)
     col4.plotly_chart(plot4)
 
 
