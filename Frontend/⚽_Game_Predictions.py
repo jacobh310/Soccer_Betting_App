@@ -62,7 +62,7 @@ st.markdown("""Take bets when Model Home Win Prob is greater than the Bet 365 Ho
                 Model odds are less than the Bet365 Home Odds""")
 
 # checking if there is games in the next 3 days. If there is a dataframe will appear
-if df != 'No Games':
+if isinstance(df,pd.DataFrame):
     df['Date_Time'] = df['Date_Time'].apply(to_dt)
     df = df[['Home_Team', 'Home_Logo_URL', 'Away_Team', 'Away_Logo_URL', 'Date_Time', 'Bet_365_Home_Win_Prob',
              'Model_Home_Win_Prob', 'Bet365_Home_Odds', 'Implied_Model_Odds']]
