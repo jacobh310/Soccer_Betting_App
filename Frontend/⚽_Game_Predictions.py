@@ -50,16 +50,6 @@ df = get_games()
 # to be more visually appealing
 
 
-if df is not 'No Games':
-    df['Date_Time'] = df['Date_Time'].apply(to_dt)
-    df = df[['Home_Team', 'Home_Logo_URL', 'Away_Team', 'Away_Logo_URL', 'Date_Time', 'Bet_365_Home_Win_Prob',
-             'Model_Home_Win_Prob', 'Bet365_Home_Odds', 'Implied_Model_Odds']]
-    new_cols = ['Home', 'H', 'Away', 'A', 'Game Time', 'Bet 365 Home Win Prob',
-                'Model Home Win Prob', 'Bet365 Home Odds', 'Implied Model Odds']
-    mapper = dict(zip(df.columns, new_cols))
-    df = df.rename(columns=mapper).round(3)
-    df = HTML(df.to_html(escape=False, formatters=dict(H=path_to_image_html, A=path_to_image_html)))
-
 # Formatting and Styling Page
 
 st.title("Upcoming Game Predictions")
@@ -71,6 +61,14 @@ st.markdown("""Take bets when Model Home Win Prob is greater than the Bet 365 Ho
 
 # checking if there is games in the next 3 days. If there is a dataframe will appear
 if df is not 'No Games':
+    df['Date_Time'] = df['Date_Time'].apply(to_dt)
+    df = df[['Home_Team', 'Home_Logo_URL', 'Away_Team', 'Away_Logo_URL', 'Date_Time', 'Bet_365_Home_Win_Prob',
+             'Model_Home_Win_Prob', 'Bet365_Home_Odds', 'Implied_Model_Odds']]
+    new_cols = ['Home', 'H', 'Away', 'A', 'Game Time', 'Bet 365 Home Win Prob',
+                'Model Home Win Prob', 'Bet365 Home Odds', 'Implied Model Odds']
+    mapper = dict(zip(df.columns, new_cols))
+    df = df.rename(columns=mapper).round(3)
+    df = HTML(df.to_html(escape=False, formatters=dict(H=path_to_image_html, A=path_to_image_html)))
     st.write(df, unsafe_allow_html=True)
 else:
     st.subheader("There is no games in the next 3 days")
