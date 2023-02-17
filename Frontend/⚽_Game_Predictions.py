@@ -3,6 +3,8 @@ import requests
 import streamlit as st
 from IPython.display import HTML
 from datetime import datetime
+from io import BytesIO
+from PIL import Image
 
 # Important Functions
 
@@ -91,3 +93,12 @@ XGBoost Classifier Model was deployed to make predictions. The model is hosted o
  I wanted to display my skills and familiarity with these GCP technologies and my ability to deploy models. "Read more 
  app architecture works on
 [Github](https://github.com/jacobh310/Soccer_Betting_App).''')
+
+
+architect_url = "https://github.com/jacobh310/Soccer_Betting_App/tree/main/Images"
+architect_resp = requests.get(architect_url)
+architect_img = Image.open(BytesIO(architect_resp.content))
+
+st.subheader("Web App Architecture")
+st.image(architect_img, width=700)
+
