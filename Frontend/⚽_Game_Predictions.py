@@ -95,7 +95,7 @@ XGBoost Classifier Model was deployed to make predictions. The model is hosted o
 [Github](https://github.com/jacobh310/Soccer_Betting_App).''')
 
 
-architect_url = "https://github.com/jacobh310/Soccer_Betting_App/tree/main/Images"
+architect_url = "https://raw.githubusercontent.com/jacobh310/Soccer_Betting_App/main/Images/App%20Architecture.png"
 architect_resp = requests.get(architect_url)
 architect_img = Image.open(BytesIO(architect_resp.content))
 
