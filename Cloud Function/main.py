@@ -46,11 +46,11 @@ headers = {
     "X-RapidAPI-Host": RAPID_API_HOST
     }
 
-querystring = {"include":"standings.team","tz":"Europe/Amsterdam"}
+querystring = {"include":"standings.team","tz":"America/Los_Angeles"}
 
 
 date_1 = date.today().strftime("%Y-%m-%d")
-date_2 = date.today() + timedelta(days=3)
+date_2 = date.today() + timedelta(days=4)
 date_2 = date_2.strftime("%Y-%m-%d")
 bpl_league_id = 8
 bpl_season_id = 19734

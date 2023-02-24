@@ -4,7 +4,7 @@ import json
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder
 from datetime import datetime
-
+from pytz import timezone
 
 def get_points(result):
     if result == 'W':
@@ -79,6 +79,7 @@ def make_stats_df(season_stats):
 # Gets Standing stats of all teams. Returns Dictionary
 
 def get_stand(season_id, headers, querystring):
+    """Gets standings"""
     url = f"https://football-pro.p.rapidapi.com/api/v2.0/standings/season/{season_id}"
 
     response = requests.request("GET", url, headers=headers, params=querystring)
@@ -144,7 +145,7 @@ def get_team_stats(API_TOKEN, season_id, standings):
 def get_fixture_stats(league_id, date1, date2, all_stats,headers):
     url = f"https://football-pro.p.rapidapi.com/api/v2.0/fixtures/between/{date1}/{date2}"
 
-    querystring = {"bookmakers": "2", "leagues": str(league_id), "tz": "Europe/Amsterdam",
+    querystring = {"bookmakers": "2", "leagues": str(league_id), "tz": "America/Los_Angeles",
                    "include": "localTeam,visitorTeam,season,flatOdds"}
     response = requests.request("GET", url, headers=headers, params=querystring)
 
@@ -165,7 +166,7 @@ def get_fixture_stats(league_id, date1, date2, all_stats,headers):
         home_stats['Bet 365 Home Win Prob'] = home_prob
         home_stats['Home_Logo_URL'] = dic['data'][game]['localTeam']['data']['logo_path']
         home_stats['Date_Time'] = dic['data'][game]['time']['starting_at']['date_time']
-        home_stats['Request_Date_Time'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        home_stats['Request_Date_Time'] = datetime.now().astimezone(timezone('US/Pacific')).strftime("%Y-%m-%d %H:%M:%S")
 
         away_stats = all_stats[all_stats['team_id'] == away_id].reset_index().drop(columns='index')
         away_stats['Away_Logo_URL'] = dic['data'][game]['visitorTeam']['data']['logo_path']
@@ -176,6 +177,7 @@ def get_fixture_stats(league_id, date1, date2, all_stats,headers):
 
     old_cols = ['team_idH', 'team_idA', 'PH', 'FormPtsH', 'M1H', 'M2H', 'M3H', 'GSH', 'GCH', 'FH', 'TSH', 'CH', 'SH',
                 'PA', 'FormPtsA', 'M1A', 'M2A', 'M3A', 'GSA', 'GCA', 'FA', 'TSA', 'CA', 'SA']
+
     # Make suffix into prefix
     new_cols = [i[-1] + i[:-1] for i in old_cols]
     mapper = dict(zip(old_cols, new_cols))
