@@ -157,9 +157,15 @@ def get_fixture_stats(league_id, date1, date2, all_stats,headers):
         away_id = dic['data'][game]['visitorTeam']['data']['id']
 
         all_odds = dic['data'][game]['flatOdds']['data']
-        wdl_odds = [i for i in all_odds if correct_odds(i)]
-        home_odds = float(wdl_odds[0]['odds'][0]['value'])
-        home_prob = round(float(wdl_odds[0]['odds'][0]['probability'][:-1]) / 100, 3)
+
+        if all_odds:
+            wdl_odds = [i for i in all_odds if correct_odds(i)]
+
+            home_odds = float(wdl_odds[0]['odds'][0]['value'])
+            home_prob = round(float(wdl_odds[0]['odds'][0]['probability'][:-1]) / 100, 3)
+        else:
+            home_odds = 'Postponed'
+            home_prob = 'Postponed'
 
         home_stats = all_stats[all_stats['team_id'] == home_id].reset_index().drop(columns='index')
         home_stats['Bet365 Home Odds'] = home_odds

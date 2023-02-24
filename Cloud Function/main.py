@@ -9,8 +9,7 @@ from google.cloud import bigquery, storage
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-prod = True
-
+prod = False
 if not prod:
 
     load_dotenv()
@@ -59,7 +58,7 @@ bpl_season_id = 19734
 def send_data(request):
 
     if request:
-        stand_df = utils.get_stand(bpl_season_id,headers, querystring)
+        stand_df = utils.get_stand(bpl_season_id, headers, querystring)
         all_stats = utils.get_team_stats(SM_API_TOKEN, bpl_season_id, stand_df)
         try:
             diff_fix_stats = utils.get_fixture_stats(bpl_league_id, date_1, date_2, all_stats, headers)
@@ -92,7 +91,3 @@ def send_data(request):
         else:
             print(errors)
             return 'Failed'
-
-
-
-
