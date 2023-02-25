@@ -19,9 +19,9 @@ if not prod:
     BUCKET_NAME = os.getenv('BUCKET_NAME')
     client = storage.Client()
     bucket = client.bucket(BUCKET_NAME)
-    blob = bucket.blob(f"models/final_xgb_3.sav")
-    blob.download_to_filename('tmp/final_xgb_3.sav')
-    model_path = 'tmp/final_xgb_3.sav'
+    blob = bucket.blob(f"models/final_xgb_5.sav")
+    blob.download_to_filename('tmp/final_xgb_5.sav')
+    model_path = 'tmp/final_xgb_5.sav'
 
 
 else:
@@ -32,9 +32,9 @@ else:
     BUCKET_NAME = os.getenv('BUCKET_NAME')
     client = storage.Client()
     bucket = client.bucket(BUCKET_NAME)
-    blob = bucket.blob(f"models/final_xgb_3.sav")
-    blob.download_to_filename('/tmp/final_xgb_3.sav')
-    model_path = '/tmp/final_xgb_3.sav'
+    blob = bucket.blob(f"models/final_xgb_5.sav")
+    blob.download_to_filename('/tmp/final_xgb_5.sav')
+    model_path = '/tmp/final_xgb_5.sav'
 
 
 model = joblib.load(model_path)
