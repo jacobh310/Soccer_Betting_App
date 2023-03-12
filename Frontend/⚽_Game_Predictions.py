@@ -74,7 +74,7 @@ if isinstance(df,pd.DataFrame):
     highlight = df[(df['Model_Home_Win_Prob']+tol)>=df['Bet_365_Home_Win_Prob']].index.tolist()
 
     df = df.rename(columns=mapper).round(3)
-    df = df.style.apply(lambda x:['background-color: #e6ffe6' if x.name in highlight else '' for i in x], axis=1)
+    # df = df.style.apply(lambda x:['background-color: #e6ffe6' if x.name in highlight else '' for i in x], axis=1)
     df = HTML(df.to_html(escape=False, formatters=dict(H=path_to_image_html, A=path_to_image_html)))
     st.write(df, unsafe_allow_html=True)
 else:
