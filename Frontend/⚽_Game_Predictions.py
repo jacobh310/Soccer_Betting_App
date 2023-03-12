@@ -59,7 +59,7 @@ st.title("Upcoming Game Predictions")
 st.markdown('''##### <span style="color:gray">Predicts Home Win Probability and Implied Model Odds. </span>
             ''', unsafe_allow_html=True)
 st.markdown("""Take bets when Model Home Win Prob is greater than the Bet 365 Home Win Prob. Or when the Implied 
-                Model odds are less than the Bet365 Home Odds""")
+                Model odds are less than the Bet365 Home Odds. The games which the model thinks are at fair or cheap odds are highlihgted in light green""")
 
 # checking if there is games in the next 3 days. If there is a dataframe will appear
 if isinstance(df,pd.DataFrame):
