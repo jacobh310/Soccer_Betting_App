@@ -70,6 +70,7 @@ if isinstance(df,pd.DataFrame):
                 'Model Home Win Prob', 'Bet365 Home Odds', 'Implied Model Odds']
     mapper = dict(zip(df.columns, new_cols))
 
+    tol = 0.01
     highlight = df[(df['Model_Home_Win_Prob']+tol)>=df['Bet_365_Home_Win_Prob']].index.tolist()
 
     df = df.rename(columns=mapper).round(3)
