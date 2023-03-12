@@ -64,6 +64,17 @@ st.markdown("""Take bets when Model Home Win Prob is greater than the Bet 365 Ho
 # checking if there is games in the next 3 days. If there is a dataframe will appear
 if isinstance(df,pd.DataFrame):
     df['Date_Time'] = df['Date_Time'].apply(to_dt)
+
+    
+    df['Home_Logo_URL'] = df['Home_Logo_URL'].str.replace(
+            '(.*)', 
+            '<img src="\\1" style="max-height:50px;"></img>'
+        )
+
+    df['Away_Logo_URL'] = df['Away_Logo_URL'].str.replace(
+            '(.*)', 
+            '<img src="\\1" style="max-height:50px;"></img>'
+    )
     df = df[['Home_Team', 'Home_Logo_URL', 'Away_Team', 'Away_Logo_URL', 'Date_Time', 'Bet_365_Home_Win_Prob',
              'Model_Home_Win_Prob', 'Bet365_Home_Odds', 'Implied_Model_Odds']]
     new_cols = ['Home', 'H', 'Away', 'A', 'Game Time', 'Bet 365 Home Win Prob',
@@ -74,9 +85,10 @@ if isinstance(df,pd.DataFrame):
     highlight = df[(df['Model_Home_Win_Prob']+tol)>=df['Bet_365_Home_Win_Prob']].index.tolist()
 
     df = df.rename(columns=mapper).round(3)
-    # df = df.style.apply(lambda x:['background-color: #e6ffe6' if x.name in highlight else '' for i in x], axis=1)
-    df = HTML(df.to_html(escape=False, formatters=dict(H=path_to_image_html, A=path_to_image_html)))
+    df = df.style.apply(lambda x:['background-color: #e6ffe6' if x.name in highlight else '' for i in x], axis=1)
+    df = HTML(df.to_html(escape=False))
     st.write(df, unsafe_allow_html=True)
+    
 else:
     st.subheader("There is no games in the next 3 days")
 
